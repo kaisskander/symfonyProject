@@ -2,12 +2,20 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity(fields={"email"},message="Un autre utilisateur s'est deja inscrit avec cette email")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -18,21 +26,25 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="vous devez renseigner votre Prenom")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="vous devez renseigner votre Nom")
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(message="WRONG EMAIL FORMAT NIGGA")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(message="Veuillez donner une URL valide pour votre avatar!!!")
      */
     private $picture;
 
@@ -40,14 +52,20 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $hash;
+    /**
+     * @Assert\EqualTo(propertyPath="hash",message="Vous n'avez pas comfirmer votre mot de passe correctement")
+     */
+    public $passwordConfirm;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=10,minMessage="Votre introduction doit faire au moins 10 caratères")
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\length(min=100,minMessage="Votre introduction doit faire au moins 100 caratères")
      */
     private $description;
 
@@ -55,6 +73,36 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ad", mappedBy="author")
+     */
+    private $ads;
+
+
+
+    /**
+     * Permet d'initialiser le slug !!
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     *
+     */
+    public function initializeSlug(){
+        if(empty($this->slug)){
+            $slugify =new Slugify();
+            $this->slug = $slugify->slugify($this->firstName .' '. $this->lastName);
+
+        }
+    }
+
+
+
+
+
+    public function __construct()
+    {
+        $this->ads = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -156,4 +204,63 @@ class User
 
         return $this;
     }
+
+    /**
+     * @return Collection|Ad[]
+     */
+    public function getAds(): Collection
+    {
+        return $this->ads;
+    }
+
+    public function addAd(Ad $ad): self
+    {
+        if (!$this->ads->contains($ad)) {
+            $this->ads[] = $ad;
+            $ad->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAd(Ad $ad): self
+    {
+        if ($this->ads->contains($ad)) {
+            $this->ads->removeElement($ad);
+            // set the owning side to null (unless already changed)
+            if ($ad->getAuthor() === $this) {
+                $ad->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRoles(){
+
+             return ['ROLE_USER'];
+        }
+
+
+    public function getPassword()
+    {
+       return $this->hash;
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+
 }

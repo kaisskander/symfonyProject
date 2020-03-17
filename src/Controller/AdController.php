@@ -8,7 +8,6 @@ use App\Form\Ad2Type;
 use App\Form\AdType;
 use App\Repository\AdRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use http\Env\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;

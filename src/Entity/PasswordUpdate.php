@@ -2,39 +2,26 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\FormTypeInterface;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\PasswordUpdateRepository")
- */
+
+
 class PasswordUpdate
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $oldPassword;
-
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=8,minMessage="Votre mdp doit faire more than 8 caractéres !!!")
      */
     private $newPassword;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\EqualTo(propertyPath="newPassword" ,message="Vous n'avez pas correctement votre nouveau mdp")
      */
+
     private $confirmPassword;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getOldPassword(): ?string
     {
