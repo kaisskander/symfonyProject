@@ -19,3 +19,16 @@ div.carousel-caption{
 
 
 }
+.avatar1 {
+    max-width:  128px;
+    max-height: 128px;
+    border-radius: 50%;
+}
+.avatar1-medium {
+    max-width: 64px;
+    max-height: 64px;
+}
+.avatar-mini {
+    max-height: 24px;
+    max-width: 24px;
+}
