@@ -11,7 +11,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AdController extends AbstractController
 {
@@ -54,6 +57,7 @@ class AdController extends AbstractController
     /**
      *permet de creer une annonce
      * @Route("ads/new2" , name="ads_create2")
+     * @IsGranted("ROLE_USER")
      *
      */
     public function create2(Request $request){
@@ -83,7 +87,8 @@ class AdController extends AbstractController
     /**
      * permet de modifer le formulaire
      * @Route("/ads/{slug}/edit", name="ads_edit")
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message="cette annonce ne vous appartient pas vous nous pouvez pas le modifier")
+     * @return Response
      */
 
     public function edit(Ad $ad,Request $request){

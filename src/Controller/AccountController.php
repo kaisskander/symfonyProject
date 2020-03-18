@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Ad;
 use App\Entity\PasswordUpdate;
 use App\Form\PasswordUpdateType;
 use App\Entity\User;
@@ -16,6 +17,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Form\FormTypeInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AccountController extends AbstractController
 {
@@ -72,6 +75,7 @@ class AccountController extends AbstractController
     /**
      * Permet d'afficher et de traiter le formulaire de modification de profil
      * @Route("/account/profile",name="account_profile")
+     * @IsGranted("ROLE_USER")
      * @return Response
      */
 
@@ -99,6 +103,7 @@ class AccountController extends AbstractController
     /**
      * modifer password
      * @Route("/account/password-update" , name="account_password")
+     * @IsGranted("ROLE_USER")
      * @return Response
      */
 
@@ -140,6 +145,7 @@ class AccountController extends AbstractController
     /**
      * permet d'afficher le profil de l'utilisateur connecté
      * @Route("/account" ,name="account_index")
+     * @IsGranted("ROLE_USER")n
      */
 
     public function myAccount()
@@ -147,6 +153,23 @@ class AccountController extends AbstractController
         return $this->render('user/index.html.twig',[
             'user' =>$this->getUser()
         ]);
+    }
+
+    /**
+     * Permet de supprimer une annonce
+     * @Route("/ads/{slug}/delete",name="ads_delete")
+     * @Security("is_granted('ROLE_USER') and user ==ad.getAuthor()",message="Vous n'avez pas le droit d'acceder a cette ressources")
+     */
+
+    public function delete(Ad $ad){
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($ad);
+        $manager->flush();
+
+        $this->addFlash('success' , "l'annonce <strong>{$ad->getTitle()}</strong> a bien éte supprimée!!");
+
+        return $this->redirectToRoute('ads_index');
+
     }
 
 }
