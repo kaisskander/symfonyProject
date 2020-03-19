@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}ACCES DEINED{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>ARE YOU TRYING TO OUT SMART US !!!</h1>
+        <div class="alert alert-danger">
+            <p>YOU DON'T HAVE ACCES TO THIS PAGE HOMIE</p>
+            <p>{{ exception.message }}</p>
+        </div>
+
+        <a href="{{ path('homepage') }}" class="btn btn-primary">Retour à l'accueil</a>
+        <a href="{{ path('ads_index') }}" class="btn btn-success">Nos annonces</a>
+    </div>
+
+{% endblock %}
