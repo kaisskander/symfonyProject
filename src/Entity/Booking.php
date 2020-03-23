@@ -33,7 +33,7 @@ class Booking
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\GreaterThan("today",message="date must become after this day")
+     * @Assert\GreaterThan("today",message="date must become after this day",  groups={"front"})
      *
      */
     private $startDate;
@@ -62,6 +62,7 @@ class Booking
 
     /**
      * @ORM\PrePersist
+     * @ORM\PreUpdate
      */
     public function prePersist()
     {

@@ -2,25 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16409f86-b85d-4c8f-8938-5486fdc805e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Comment.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/CommentType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Migrations/Version20200320100842.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/CommentRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/partials/rating.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/symbnb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symbnb.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/AdminAccountController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/AdminAdController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/AdminBookingController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/AdminCommentsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/AdminBookingType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/AdminCommentType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/account/login.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/ad/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/ad/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/base.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/booking/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/booking/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/comment/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/comment/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/partials/footer.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/partials/header.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/BookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BookingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Ad.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ApplicationType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ApplicationType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/account/bookings.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account/bookings.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ad/_ad.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ad/_ad.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ad/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ad/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/booking/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/booking/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AccountController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Booking.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Booking.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/BookingType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/BookingType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/booking/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/booking/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,6 +182,14 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Asus\Desktop\Sym-project\FullProject\symbnb\templates\admin\booking" />
+      <recent name="C:\Users\Asus\Desktop\Sym-project\FullProject\symbnb\templates\admin\comment" />
+      <recent name="C:\Users\Asus\Desktop\Sym-project\FullProject\symbnb\templates\admin\account" />
+      <recent name="C:\Users\Asus\Desktop\Sym-project\FullProject\symbnb\templates\admin\ad" />
+    </key>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -205,7 +218,13 @@
       <workItem from="1584522753524" duration="22320000" />
       <workItem from="1584609822343" duration="8791000" />
       <workItem from="1584633093502" duration="10864000" />
-      <workItem from="1584698389539" duration="11861000" />
+      <workItem from="1584698389539" duration="11950000" />
+      <workItem from="1584720620845" duration="32000" />
+      <workItem from="1584720738511" duration="331000" />
+      <workItem from="1584721208397" duration="9256000" />
+      <workItem from="1584789461942" duration="14203000" />
+      <workItem from="1584892828665" duration="7496000" />
+      <workItem from="1584962862408" duration="6157000" />
     </task>
     <servers />
   </component>
@@ -216,6 +235,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="363" y="100" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1584720633745">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="363" y="100" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.728/-243.-1080.1920.1040@0.0.1366.728" timestamp="1584720633745" />
     <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1584469446589">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -238,14 +261,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="6" key="SettingsEditor/0.0.1366.728/-306.-1080.1920.1040@0.0.1366.728" timestamp="1584006201108" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1584725396867">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1366.728/-243.-1080.1920.1040@0.0.1366.728" timestamp="1584725396867" />
+    <state x="263" y="-371" width="1028" height="715" key="dock-window-1" timestamp="1584811715523">
+      <screen x="-243" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="263" y="-371" width="1028" height="715" key="dock-window-1/0.0.1366.728/-243.-1080.1920.1040@0.0.1366.728" timestamp="1584811715523" />
     <state x="339" y="162" key="run.anything.popup" timestamp="1584708990259">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728/-243.-1080.1920.1040@0.0.1366.728" timestamp="1584708990259" />
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728/-306.-1080.1920.1040@0.0.1366.728" timestamp="1584010948278" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1584612954057">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1584810298839">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/-243.-1080.1920.1040@0.0.1366.728" timestamp="1584612954057" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/-243.-1080.1920.1040@0.0.1366.728" timestamp="1584810298839" />
   </component>
 </project>
