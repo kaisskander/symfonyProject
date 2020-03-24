@@ -6,6 +6,8 @@ use App\Entity\Comment;
 use App\Form\AdminCommentType;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
+use App\Service\PaginationService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,13 +16,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminCommentsController extends AbstractController
 {
     /**
-     * @Route("/admin/comments", name="admin_comment_index")
+     * @Route("/admin/comments/{page<\d+>?1}", name="admin_comment_index")
      */
-    public function index(CommentRepository $repository)
+    public function index(CommentRepository $repository,$page,PaginationService $paginationService )
     {
-        $comments = $repository->findAll();
+        $paginationService->setEntityClass(Comment::class)
+            ->setPage($page)
+            ->setLimit(5);
+
         return $this->render('admin/comment/index.html.twig', [
-            'comments' => $comments
+            'pagination' => $paginationService
         ]);
     }
 
@@ -29,9 +34,8 @@ class AdminCommentsController extends AbstractController
      */
 
 
-    public function edit(Request $request,Comment $comment){
+    public function edit(Request $request,Comment $comment,EntityManagerInterface $manager){
 
-        $manager = $this->getDoctrine()->getManager();
 
         $form = $this->createForm(AdminCommentType::class,$comment);
 
@@ -65,8 +69,8 @@ class AdminCommentsController extends AbstractController
      *
      */
 
-    public function delete(Comment $comment){
-        $manager = $this->getDoctrine()->getManager();
+    public function delete(Comment $comment,EntityManagerInterface $manager){
+
         $commentaireId = $comment->getId();
         $manager->remove($comment);
         $manager->flush();

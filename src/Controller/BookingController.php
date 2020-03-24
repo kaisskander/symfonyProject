@@ -7,6 +7,7 @@ use App\Entity\Booking;
 use App\Entity\Comment;
 use App\Form\BookingType;
 use App\Form\CommentType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,11 +20,10 @@ class BookingController extends AbstractController
      * @Route("/ads/{slug}/book", name="booking_create")
      * @IsGranted("ROLE_USER",message="ACCES DENIED")
      */
-    public function book(Ad $ad,Request $request)
+    public function book(Ad $ad,Request $request,EntityManagerInterface $manager)
     {
         $booking = new Booking();
         $form =  $this->createForm(BookingType::class,$booking);
-        $manager = $this->getDoctrine()->getManager();
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -58,9 +58,9 @@ class BookingController extends AbstractController
      * @param Booking $booking
      * @return Response
      */
-    public function show(Booking $booking,Request $request){
+    public function show(Booking $booking,Request $request,EntityManagerInterface $manager){
         $comment = new Comment();
-        $manager = $this->getDoctrine()->getManager();
+
 
         $form = $this->createForm(CommentType::class,$comment);
 

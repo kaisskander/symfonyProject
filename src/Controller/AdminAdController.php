@@ -5,20 +5,28 @@ namespace App\Controller;
 use App\Entity\Ad;
 use App\Form\Ad2Type;
 use App\Repository\AdRepository;
+use App\Service\PaginationService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Environment;
+use Twig\Loader\LoaderInterface;
 
 class AdminAdController extends AbstractController
 {
     /**
-     * @Route("/admin/ads", name="admin_ads_index")
+     * @Route("/admin/ads/{page<\d+>?1}", name="admin_ads_index")
      */
-    public function index(AdRepository $repository)
+    public function index(AdRepository $repository,PaginationService $paginationService , $page)
     {
+        $paginationService->setEntityClass(Ad::class)
+            ->setPage($page)
+            ;
+
         return $this->render('admin/ad/index.html.twig', [
-            'ads' => $repository->findAll()
+           'pagination' => $paginationService
         ]);
     }
 
@@ -29,9 +37,9 @@ class AdminAdController extends AbstractController
      * @return Response
      */
 
-    public function edit(Request $request,Ad $ad){
+    public function edit(Request $request,Ad $ad,EntityManagerInterface $manager){
 
-        $manager = $this->getDoctrine()->getManager();
+
         $form =$this->createForm(Ad2Type::class,$ad);
 
         $form->handleRequest($request);
@@ -60,8 +68,8 @@ class AdminAdController extends AbstractController
      * @return void
      */
 
-    public function delete(Ad $ad){
-    $manager = $this->getDoctrine()->getManager();
+    public function delete(Ad $ad,EntityManagerInterface $manager){
+
     if (count($ad->getBookings()) > 0){
         $this->addFlash(
             'warning',

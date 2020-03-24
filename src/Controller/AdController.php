@@ -8,6 +8,7 @@ use App\Form\Ad2Type;
 use App\Form\AdType;
 use App\Repository\AdRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,11 +61,10 @@ class AdController extends AbstractController
      * @IsGranted("ROLE_USER")
      *
      */
-    public function create2(Request $request){
+    public function create2(Request $request,EntityManagerInterface $manager){
         $ad = new Ad();
         $form = $this->createForm(Ad2Type::class,$ad);
         $form->handleRequest($request);
-        $manager = $this->getDoctrine()->getManager();
         if($form->isSubmitted() && $form->isValid()){
             foreach ($ad->getImages() as $image){
                 $image->setAd($ad);
@@ -91,12 +91,12 @@ class AdController extends AbstractController
      * @return Response
      */
 
-    public function edit(Ad $ad,Request $request){
+    public function edit(Ad $ad,Request $request,EntityManagerInterface $manager){
 
 
         $form = $this->createForm(Ad2Type::class,$ad);
         $form->handleRequest($request);
-        $manager = $this->getDoctrine()->getManager();
+
         if($form->isSubmitted() && $form->isValid()){
             foreach ($ad->getImages() as $image){
                 $image->setAd($ad);

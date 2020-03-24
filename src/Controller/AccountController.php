@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Form\AccountType;
 use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,9 +50,9 @@ class AccountController extends AbstractController
      * @Route("/register", name="account_register")
      * @return Response
      */
-    public function register(Request $request,UserPasswordEncoderInterface $encoder){
+    public function register(Request $request,UserPasswordEncoderInterface $encoder,EntityManagerInterface $manager){
         $user = new User();
-        $manager = $this->getDoctrine()->getManager();
+
         $form= $this->createForm(RegistrationType::class,$user);
 
         $form->handleRequest($request);
@@ -79,10 +80,9 @@ class AccountController extends AbstractController
      * @return Response
      */
 
-    public function profile(Request $request){
+    public function profile(Request $request,EntityManagerInterface $manager){
         $user = $this->getUser();
         $form = $this->createForm(AccountType::class,$user);
-        $manager = $this->getDoctrine()->getManager();
 
         $form->handleRequest($request);
 
@@ -107,9 +107,8 @@ class AccountController extends AbstractController
      * @return Response
      */
 
-    public function updatePassword(Request $request,UserPasswordEncoderInterface $encoder) {
+    public function updatePassword(Request $request,UserPasswordEncoderInterface $encoder,EntityManagerInterface $manager) {
              $passwordUpdate = new PasswordUpdate();
-             $manager = $this->getDoctrine()->getManager();
              $user = $this->getUser();
              $form = $this->createForm(PasswordUpdateType::class,$passwordUpdate);
              $form->handleRequest($request);
@@ -161,8 +160,8 @@ class AccountController extends AbstractController
      * @Security("is_granted('ROLE_USER') and user ==ad.getAuthor()",message="Vous n'avez pas le droit d'acceder a cette ressources")
      */
 
-    public function delete(Ad $ad){
-        $manager = $this->getDoctrine()->getManager();
+    public function delete(Ad $ad,EntityManagerInterface $manager){
+
         $manager->remove($ad);
         $manager->flush();
 
